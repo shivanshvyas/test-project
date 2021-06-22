@@ -1,0 +1,126 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui"
+          name="viewport">
+    <title>Test Project</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <!-- App Icons -->
+    <link href="{% static 'assets/images/favicn.ico' %}" rel="shortcut icon">
+    <!-- Basic Css files -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}"
+          rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/metismenu.min.css' %}"
+          rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet"
+          type="text/css">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"
+          type="text/css">
+</head>
+<body class="fixed-left">
+<!-- Loader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner"></div>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="accountbg"></div>
+<div class="wrapper-page">
+
+    <div class="card">
+        <div class="card-body">
+            <a class="logo my-2 d-block text-center" href="/"><img
+                    alt="logo" class="logo-large"
+                    src="/static/assets/images_1/e-kirana-logo.png" width=200px></a>
+            <div class="pb-2">
+                <div class="text-center">
+                    <h3>Welcome Back!</h3>
+
+                    <p class="text-muted mb-0">Sign in to continue.</p>
+                </div>
+            </div>
+            <div class="p-3">
+                {% for message in messages %}
+                <div class="alert alert-success">
+                    <a class="close" data-dismiss="alert" href="#">×</a> {{ message }}
+                </div>
+                {% endfor %}
+                <form action="{% url 'accounts:login'%}" class="sign-in outer-top-xs"
+                      method="POST">
+                    <div class="form-group">
+                        {% csrf_token %} <label class="info-title" for="username">Email
+                        Address:</label> <input class="form-control unicase-form-control" name="email" type="text" placeholder="{% trans 'Enter Email' %}" >
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="password">Password:</label> <input
+                            class="form-control unicase-form-control"
+                            type="password" name="password" placeholder="{% trans 'Enter Password' %}" >
+                        <p class="error"></p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="custom-checkbox">
+                                <div class="form-group">
+                                    <input id="javascript" type="checkbox"> <label
+                                        for="javascript">{% trans "Remember me" %}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 text-right">
+                            <a class="text-muted" href=""><i
+                                    class="mdi mdi-lock"></i> Forgot password?</a>
+
+
+                        </div>
+                    </div>
+                    <div class="form-group m-t-30 mb-0 row">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-success btn-rounded w-md waves-effect waves-light btn-block btn-lg"
+                                    type="submit">
+                                Log
+                                In
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="mt-2 text-center">
+                <p>
+                    Don't have an account ? <a class="font-600"
+                                               href="{% url 'accounts:signup' %}">Sign up Now</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</p>
+
+</div>
+</div>
+</div>
+
+</div>
+<!-- end wrapper-page -->
+<!-- jQuery  -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/modernizr.min.js' %}"></script>
+<script src="{% static 'assets/js/metisMenu.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/waves.js' %}"></script>
+<!-- App js -->
+<script src="{% static 'assets/js/app.js' %}"></script>
+</body>
+</html>

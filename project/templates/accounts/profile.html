@@ -1,0 +1,133 @@
+
+{% block content %}
+
+
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h4 class="page-title mb-0">Profile Page</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {% for message in messages %}
+                    <div class="alert alert-success">
+                        <a class="close" data-dismiss="alert" href="#">×</a> {{ message }}
+                    </div>
+                    {% endfor %}
+                    <!-- BEGIN PROFILE SIDEBAR -->
+                    <div class="profile-sidebar py-3">
+                        <div class="card card-topline-aqua">
+                            <div class="card-body no-padding height-9">
+                                <div class="row">
+                                    <div class="profile-userpic">
+                                        <p class="mb-20">PICTURE</p>
+                                        {% if request.user.upload_image and request.user.upload_image != "" %}
+                                        <img alt="user" src="/media/{{ request.user.upload_image }}" /> {% else %}
+                                        <img alt="user" class="img-circle" src="/static/img/11.jpeg" /> {% endif %}
+                                    </div>
+                                </div>
+                                <form action="{% url 'accounts:profile' %}" class="outer-top-xs" enctype="multipart/form-data" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <div class="upload-btn-wrapper">
+                                            <label>Edit Picture</label>
+                                            <input accept=".png, .jpg, .jpeg" class="form-control unicase-form-control text-input" id="imageprofile" name="upload_image" required="required" type="file" value="{{ request.user.upload_image }}">
+
+                                        </div>
+                                    </div>
+                                    <div class="butn d-flex justify-content-end">
+                                        <button class="btn btn-success btn-rounded w-md waves-effect waves-light btn-block btn-lg w-unset" type="submit">
+                                            Update
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END BEGIN PROFILE SIDEBAR -->
+                    <!-- BEGIN PROFILE CONTENT -->
+                    <div class="profile-content py-3">
+                        <div class="card">
+                            <div class="card-topline-aqua">
+                                <header></header>
+                            </div>
+                            
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fontawesome-demo active show" id="tab1">
+                                        <div id="biography">
+                                            <h3 class="profile-heading text-center py-4">My Profile</h3>
+                                        </div>
+                                        <div class="main-form">
+                                            <form action="{% url 'accounts:profile' %}" class="outer-top-xs" enctype="multipart/form-data" id="profile_form" method="post" name="myForm">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label>First Name</label>
+                                                    <input {% if not request.user.first_name %} placeholder="First Name" {% else %} value="{{ request.user.first_name }}" {% endif %} class="form-control" type="text" name="first_name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Last Name </label>
+                                                    <input {% if not request.user.last_name %} placeholder="Last Name" {% else %} value="{{ request.user.last_name }}" {% endif %} class="form-control" type="text" name="last_name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Email Address</label>
+                                                    <input {% if not request.user.email %} placeholder="Email" {% else %} value="{{ request.user.email }}" {% endif %} class="form-control" type="text" name="email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>date_of_birth</label>
+
+                                                    <input {% if not request.user.date_of_birth %} placeholder="Date birth"
+                                                           {% else %} value="{{ request.user.date_of_birth }}" {% endif %} class="form-control" type="date" name="contact_no">
+
+                                                </div>
+                                                  <div class="col-sm col-sm mg-t-10 mg-sm-t-0">
+                            <select class="custom-select main_category" aria-placeholder="Real Estate"
+                                name="real_estate_id" required>
+                                
+
+                                {% for name in class_names %}
+                                <option value="{{ name.id }}" required>{{name}}</option>
+                                {% endfor %}
+                            </select>
+                            <p class="error text-danger" id="real_estate_id_error"></p>
+                            <p class="error text-danger"></p>
+
+                        </div>
+                                               
+                                                <div class="d-md-flex justify-content-end">
+                                                    <button class="btn btn-success btn-rounded w-md waves-effect waves-light btn-block btn-lg w-unset" type="submit">Save
+                                                    </button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    
+                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PROFILE CONTENT -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

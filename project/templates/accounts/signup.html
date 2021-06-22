@@ -1,0 +1,159 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui"
+          name="viewport">
+    <title>Test Project</title>
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <!-- App Icons -->
+    <link href="{% static 'assets/images/favicn.ico' %}" rel="shortcut icon">
+    <!-- Basic Css files -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}"
+          rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/metismenu.min.css' %}"
+          rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet"
+          type="text/css">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"
+          type="text/css">
+</head>
+<body class="fixed-left">
+<!-- Loader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner"></div>
+    </div>
+</div>
+<!-- Begin page -->
+
+<div class="accountbg"></div>
+
+<div class="wrapper-page" style="max-width: 520px;">
+
+    <div class="card">
+        <div class="card-body">
+            <a class="logo my-2 d-block text-center" href="/"><img
+                    alt="logo" class="logo-large"
+                    src="/static/assets/images_1/e-kirana-logo.png" width=200px></a>
+            <div class="pb-2">
+                <div class="text-center">
+                    <h4 class="font-18">Sign up</h4>
+                </div>
+            </div>
+            
+          
+            <div class="tab-content">
+               
+
+                <div class="tab-pane" id="tab2">
+                    <form action="{% url 'accounts:signup' %}" class="registration merchant"
+                          method="POST">
+                        {% csrf_token %} <input name="role_id" type="hidden" value="2">
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="First name">First name</label> <input class="form-control"
+                                                                                          name="first_name"
+                                                                                          placeholder="Enter first name" type="text"
+                                                                                          value="">
+                                        <p class="error"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="First name">Last name</label> <input class="form-control"
+                                                                                         name="last_name"
+                                                                                         placeholder="Enter last name"
+                                                                                         type="text">
+                                        <p class="error"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label> <input class="form-control"
+                                                                                name="email" placeholder="Enter Email address"
+                                                                                type="email">
+                                <p class="error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userpassword">Password</label> <input
+                                    class="form-control" minlength="8" name="password"
+                                    placeholder="Enter password" type="password">
+                                <p class="error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone number">Date of birth</label> <input
+                                    class="form-control" maxlength="10" minlength="10"
+                                    type="date" name="date_of_birth" placeholder="Enter date of birth" type="text">
+                                <p class="error"></p>
+                            </div>
+                            
+                            <p><b>Enter Class </b></p>
+                            <div class="row row-xs  ">
+                        <div class="col-sm col-sm mg-t-10 mg-sm-t-0">
+                            <select class="custom-select main_category" aria-placeholder="Real Estate"
+                                name="real_estate_id" required>
+                                <option value="" name="real_estate_id">Select class</option>
+                                {% for name in class_names %}
+                                <option value="{{ name.id }}" required>{{name}}</option>
+                                {% endfor %}
+                            </select>
+                            <p class="error text-danger" id="real_estate_id_error"></p>
+                            <p class="error text-danger"></p>
+
+                        </div>
+
+                    </div>
+
+
+
+                        <div>
+                           
+                            <div class="subscription-btn login-btn">
+                                <button
+                                        class="btn btn-success btn-rounded w-md waves-effect waves-light btn-block btn-lg"
+                                        type="submit" value="Sign Up">Sign up
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+
+
+
+            </div>
+            <div class="mt-2 text-center">
+                <p>
+                    Already have an account? <a class="font-600"
+                                                href="{% url 'accounts:login' %}">Login Now</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- end wrapper-page -->
+<!-- jQuery  -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/modernizr.min.js' %}"></script>
+<script src="{% static 'assets/js/metisMenu.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/waves.js' %}"></script>
+<!-- App js -->
+
+<script src="{% static 'assets/js/app.js' %}"></script>
+<!-- Main server js -->
+<script src="{% static 'assets/js/e-kirana.js' %}"></script>
+</body>
+</html>
